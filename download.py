@@ -15,7 +15,7 @@ for num in range (min,max):
     print(url,num)
     p1 = find.get_pic(url,num)
     name = p1.topic()
-    name = re.sub('[/*."\[]:;|,] ','',name[0][0])
+    name = re.sub('[/*\:;|, ]','',name[0][0])
     #title中可能不再有&,此时更改第二位数字。 
     print(name)
     url_ed = p1.get_imgurl()
