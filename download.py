@@ -14,13 +14,14 @@ print(min,max)
 for num in range (min,max):
     print(url,num)
     p1 = find.get_pic(url,num)
-    nam = p1.topic()
-    print(nam)
-    name = '%s-' % nam[0][0]
-    #title中可能不再有&,此时更改第二位数字。
+    name = p1.topic()
+    name = re.sub('[/*."\[]:;|,] ','',name[0][0])
+    #title中可能不再有&,此时更改第二位数字。 
+    print(name)
     url_ed = p1.get_imgurl()
-    print(url_ed)
+    print(url_ed,name)
     d = './%s' % name
+    print(d)
     if not os.path.exists(d):
         os.mkdir(d)
     pic_num = 1
