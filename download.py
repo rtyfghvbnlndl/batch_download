@@ -10,17 +10,21 @@ if max <= min:
     max = min+1
 else:
      max += 1
+print(min,max)
 for num in range (min,max):
+    print(url,num)
     p1 = find.get_pic(url,num)
     nam = p1.topic()
+    print(nam)
     name = '%s-' % nam[0][0]
-#title中可能不再有&,此时更改第二位数字。
-    url = p1.get_imgurl()
+    #title中可能不再有&,此时更改第二位数字。
+    url_ed = p1.get_imgurl()
+    print(url_ed)
     d = './%s' % name
     if not os.path.exists(d):
         os.mkdir(d)
     pic_num = 1
-    for pic_url in url:
+    for pic_url in url_ed:
          print(pic_url)
          r = requests.get(pic_url)
          from contextlib import closing
@@ -29,5 +33,9 @@ for num in range (min,max):
                 for chunk in response.iter_content(128):
                    fd.write(chunk)
          print('保存为%s/%s%i.jpg' % (d,name,pic_num))
+         print('保存图片循环%i次' % pic_num)
          pic_num += 1
+         sleep(1)
+    print('序号循环到%i' % num)
+    sleep(2)
 print('结束')
